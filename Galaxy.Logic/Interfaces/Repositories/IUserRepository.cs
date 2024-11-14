@@ -13,5 +13,7 @@ namespace Galaxy.Logic.Interfaces.Repositories
 
         public User GetByEmail(DataContext context, string email);
 
+        public bool isEmailReg(DataContext context, string email);
+
     }
 }

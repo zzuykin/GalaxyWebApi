@@ -45,5 +45,10 @@ namespace Galaxy.Logic.Repositories
             var userBd = context.Users.FirstOrDefault(x => x.ClientEmail == email);
             return userBd;
         }
+
+        public bool isEmailReg(DataContext context, string email)
+        {
+            return context.Users.FirstOrDefault(x => x.ClientEmail == email) != null;
+        }
     }
 }

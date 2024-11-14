@@ -1,8 +1,13 @@
-﻿
+﻿@using WebApplication1.Features.ViewModels
+@{
+    var editUser = ViewData["EditUser"] as EditUser;
+}
 @{
 
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+
+
 
 
 <div class="content">
@@ -42,23 +47,25 @@
                 </div>
             </div>
         </div>
+        @if (Context.Request.Cookies.ContainsKey("auth_cookie"))
+        {
         <div class="guest">
             <div class="guest__body">
                 <div class="guest__form">
                     <div class="guest__title">
-                        <h1>Оставьте отзыв о нашей компании</h1>
+                        <h1>@editUser.ClientName, оставьте отзыв о нашей компании</h1>
                     </div>
                     @using (Html.BeginForm("SubmitReview", "Home", FormMethod.Post))
                     {
                         <form @* asp-action="SubmitReview" asp-controller="Home" method="post" *@>
-                            <div class="form-group">
+                            @* <div class="form-group">
                                 <label for="name">Имя</label>
                                 <input type="text" id="name" name="name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input placeholder="mymail@exmple.com" type="email" id="email" name="email" required>
-                            </div>
+                            </div> *@
                             <div class="form-group">
                                 <label for="review">Отзыв</label>
                                 <textarea placeholder="Мне очень нравится ваш продукт :)" id="review" name="review" rows="5" required></textarea>
@@ -73,7 +80,6 @@
                             </div>
                         </form>
                     }
-
                     <!-- Вывод сообщения об успешной отправке -->
                     @if (TempData["Message"] != null)
                     {
@@ -82,5 +88,6 @@
                 </div>
             </div>
         </div>
+        }
     </div>
 </div>

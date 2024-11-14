@@ -29,16 +29,17 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             var editUser = GetUserData();
+            ViewData["EditUser"] = editUser;
             return View();
         }
-
         [HttpPost(nameof(SubmitReview), Name = nameof(SubmitReview))]
-        public async Task<IActionResult> SubmitReview(string name, string email, string review, bool publish)
+        public async Task<IActionResult> SubmitReview(string review, bool publish)
         {
+            var editUser = GetUserData();
             EditFeedback feedback = new EditFeedback
             {
-                ClientName = name,
-                ClientEmail = email,
+                ClientName = editUser.ClientName,
+                ClientEmail = editUser.ClientEmail,
                 feedBackText = review,
                 forPublic = publish
             };
@@ -53,6 +54,11 @@ namespace WebApplication1.Controllers
         [HttpPost(nameof(Register), Name = nameof(Register))]
         public async Task<IActionResult> Register(string firstname, string lastname, string emailReg, string password)
         {
+            if (_userManager.isEmailReg(emailReg))
+            {
+                TempData["ErrorRegEmail"] = "ѕользователь с таким email уже зарегистрирован";
+                return View("Index");
+            }
             var hashPasword = _userManager.HashPassword(password);
             var editUser = new EditUser
             {
@@ -128,7 +134,7 @@ namespace WebApplication1.Controllers
                 {
                     string jsonData = _protector.Unprotect(protectedData);
                     EditUser userModel = JsonSerializer.Deserialize<EditUser>(jsonData);
-                    
+                    return userModel;
                 }
                 catch (Exception ex)
                 {

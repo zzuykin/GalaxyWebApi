@@ -12,5 +12,7 @@ namespace WebApplication1.Features.Interfaces.Managers
         public bool VerifyPassword(string password, string hashedPassword);
 
         public EditUser MakeEditUser(User user);
+
+        public bool isEmailReg(string email);
     }
 }

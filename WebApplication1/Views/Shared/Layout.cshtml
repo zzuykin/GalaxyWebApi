@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using WebApplication1.Features.ViewModels
+@{
+    var editUser = ViewData["EditUser"] as EditUser;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,19 +23,27 @@
                         <div class="header__logo">
                             <img src="img/index/logo.png" alt="Logo">
                         </div>
-                        <div class="header__form">
+                        <div class="header__form1">
                             @if (Context.Request.Cookies.ContainsKey("auth_cookie"))
                             {
-                                @using(Html.BeginForm("Logout", "Home", FormMethod.Post))
+                                <div class="header__username">
+                                    <span>@(@editUser.ClientName + " " + editUser.ClientSurname)</span>
+                                </div>
+                            }
+                            <div class="header__form">
+                                @if (Context.Request.Cookies.ContainsKey("auth_cookie"))
                                 {
+                                    @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
+                                    {
                                         <button type="submit">Выйти</button>
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                <button id="loginButton" onclick="showLoginModal()">Войти</button>
-                                <button id="registerButton" onclick="showRegisterModal()">Зарегистрироваться</button>
-                            }
+                                else
+                                {
+                                    <button id="loginButton" onclick="showLoginModal()">Войти</button>
+                                    <button id="registerButton" onclick="showRegisterModal()">Зарегистрироваться</button>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,6 +106,16 @@
 
                         <button type="submit">Зарегистрироваться</button>
                     </form>
+                    @if (TempData["ErrorRegEmail"] != null)
+                    {
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const registerModal = document.getElementById("registerModal");
+                                registerModal.style.display = "block";
+                            });
+                        </script>
+                        <h2>@TempData["ErrorRegEmail"]</h2>
+                    }
                 }
             </div>
         </div>

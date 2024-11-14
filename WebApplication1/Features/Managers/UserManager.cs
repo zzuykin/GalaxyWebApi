@@ -48,6 +48,9 @@ namespace WebApplication1.Features.Managers
             return mapper.Map<EditUser>(user);
         }
 
-        
+        public bool isEmailReg(string email)
+        {
+            return _userRepository.isEmailReg(_dataContext, email);
+        }
     }
 }
