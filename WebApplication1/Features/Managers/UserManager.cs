@@ -42,5 +42,12 @@ namespace WebApplication1.Features.Managers
         {
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
+
+        public EditUser MakeEditUser(User user)
+        {
+            return mapper.Map<EditUser>(user);
+        }
+
+        
     }
 }
