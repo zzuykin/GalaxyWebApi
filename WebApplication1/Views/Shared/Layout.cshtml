@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="@Url.Content("~/img/icon.png")" type="image/x-icon\\" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")" type="text/css">
+    <title>@ViewData["Title"] - Галактика</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="container">
+                <div class="header__body">
+                    <div class="header__row">
+                        <div class="header__logo">
+                            <img src="img/index/logo.png" alt="Logo">
+                        </div>
+                        <div class="header__form">
+                            @if (Context.Request.Cookies.ContainsKey("auth_cookie"))
+                            {
+                                @using(Html.BeginForm("Logout", "Home", FormMethod.Post))
+                                {
+                                        <button type="submit">Выйти</button>
+                                }
+                            }
+                            else
+                            {
+                                <button id="loginButton" onclick="showLoginModal()">Войти</button>
+                                <button id="registerButton" onclick="showRegisterModal()">Зарегистрироваться</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Вход</h2>
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    <form @* asp-action="Login" asp-controller="Home" method="post" *@>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" required>
+
+                        <button type="submit">Войти</button>
+                    </form>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const loginModal = document.getElementById("loginModal");
+                            loginModal.style.display = "block";
+                        });
+                    </script>
+                    <h2>Неверный логин или пароль!</h2>
+                }
+            </div>
+        </div>
+
+        <!-- Registration Modal -->
+        <div id="registerModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Регистрация</h2>
+                @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                {
+                    <form @* asp-action="Register" asp-controller="Home" method="post" *@>
+                        <label for="firstName">Имя</label>
+                        <input type="text" id="firstName" name="firstName" required>
+
+                        <label for="lastName">Фамилия</label>
+                        <input type="text" id="lastName" name="lastName" required>
+
+                        <label for="emailReg">Email</label>
+                        <input type="email" id="emailReg" name="emailReg" required>
+
+                        <label for="passwordReg">Пароль</label>
+                        <input type="password" id="password" name="password" required>
+
+                        <div>
+                            <input type="checkbox" id="privacyPolicy" required>
+                            <label for="privacyPolicy">Я соглашаюсь с политикой конфиденциальности</label>
+                        </div>
+
+                        <button type="submit">Зарегистрироваться</button>
+                    </form>
+                }
+            </div>
+        </div>
+
+        <div class="header__sections">
+            <div class="header__section">
+                <a href="industries.html">Отрасли</a>
+                <a href="servises.html">Услуги</a>
+                <a href="partners.html">Партнёры</a>
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Поиск по сайту...">
+                    <button type="button" onclick="searchText()">Найти</button>
+                    <button id="clearButton" onclick="clearSearch()" style="display: none;">✖</button>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__row">
+                    <div class="footer__text">
+                        © Все права защищены
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="~/js/index.js"></script>
+<script src="~/js/search.js"></script>
+</html>
