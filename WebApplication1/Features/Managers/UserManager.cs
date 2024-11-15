@@ -3,8 +3,7 @@ using AutoMapper;
 using Galaxy.Logic.Interfaces.Repositories;
 using Galaxy.Storage.DataBase;
 using Galaxy.Storage.Models;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System.Security.Cryptography;
+using Microsoft.AspNetCore.DataProtection;
 using WebApplication1.Features.Interfaces.Managers;
 using WebApplication1.Features.ViewModels;
 

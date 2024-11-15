@@ -39,13 +39,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers(); // Используем маршруты из атрибутов
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}"); // Стандартный маршрут для всех контроллеров
-});
 
 app.UseStaticFiles();
 app.Run();

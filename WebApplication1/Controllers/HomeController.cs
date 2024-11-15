@@ -2,6 +2,7 @@ using Galaxy.Storage.Models;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using WebApplication1.Features.Filters;
 using WebApplication1.Features.Interfaces.Managers;
 using WebApplication1.Features.ViewModels;
 
@@ -24,18 +25,20 @@ namespace WebApplication1.Controllers
             _protector = dataProtectionProvider.CreateProtector("UserCookieProtection");
         }
 
-
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
         [HttpGet,Route("")]
         public ActionResult Index()
         {
-            var editUser = GetUserData();
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
             ViewData["EditUser"] = editUser;
             return View();
         }
+
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
         [HttpPost(nameof(SubmitReview), Name = nameof(SubmitReview))]
         public async Task<IActionResult> SubmitReview(string review, bool publish)
         {
-            var editUser = GetUserData();
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
             EditFeedback feedback = new EditFeedback
             {
                 ClientName = editUser.ClientName,
@@ -74,7 +77,6 @@ namespace WebApplication1.Controllers
             // Преобразуем модель в JSON
             string jsonData = JsonSerializer.Serialize(editUser);
 
-            // Зашифруем JSON строку
             string protectedData = _protector.Protect(jsonData);
 
             // Сохраним зашифрованную строку в cookie
@@ -126,23 +128,23 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Index");
         }
 
-        public EditUser GetUserData()
-        {
-            if (Request.Cookies.TryGetValue("auth_cookie", out string protectedData))
-            {
-                try
-                {
-                    string jsonData = _protector.Unprotect(protectedData);
-                    EditUser userModel = JsonSerializer.Deserialize<EditUser>(jsonData);
-                    return userModel;
-                }
-                catch (Exception ex)
-                {
-                    return new EditUser();
-                }
-            }
-            return new EditUser();
-        }
+        //public EditUser GetUserData()
+        //{
+        //    if (Request.Cookies.TryGetValue("auth_cookie", out string protectedData))
+        //    {
+        //        try
+        //        {
+        //            string jsonData = _protector.Unprotect(protectedData);
+        //            EditUser userModel = JsonSerializer.Deserialize<EditUser>(jsonData);
+        //            return userModel;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return new EditUser();
+        //        }
+        //    }
+        //    return new EditUser();
+        //}
     }
 }
 

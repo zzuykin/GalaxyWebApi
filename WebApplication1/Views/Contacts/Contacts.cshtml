@@ -1,0 +1,68 @@
+﻿@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="page__body">
+                <div class="page__column">
+                    <div class="page__menu">
+                        <div class="page__menu-list">
+                            <a href=@Url.Action("Index", "Home")>Главная</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Каталог</a>
+                            <a href="about_us.html">О нас</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Контакты</a>
+                        </div>
+                    </div>
+                    <div class="about-us">
+                        <div class="about-us__body">
+                            <div class="about-us__title">
+                                <h1>Где нас найти?</h1>
+                            </div>
+                            <div class="about-us__contact">
+                                <p>Контактный номер <br> Офис в БЦ «Петровский парк» +7 495 252-02-55</p>
+                                <p>
+                                    Адрес: 125167, г. Москва
+                                    Театральная аллея, 3с1
+                                </p>
+                                <p>Email: market@galaktika.ru</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-us__pages">
+                        <div class="page__map-body">
+                            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A420b90ee9f04c8b784354fa59363cb7c332bab9ed506cf79a43f9f37f14212a5&amp;width=538&amp;height=426&amp;lang=ru_RU&amp;scroll=true"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__form">
+                <div class="page__info-from">
+                    <div class="page__info-form-body">
+                        <h1>Напишите нам!</h1>
+                        <div class="page__info-froms">
+                            <div>Имя:</div>
+                            <input type="text">
+                        </div>
+                        <div class="page__info-froms">
+                            <div>Email:</div>
+                            <input type="text" placeholder="mymail@example.com">
+                        </div>
+                        <div class="page__info-froms">
+                            <div>Тема:</div>
+                            <input type="text" placeholder="">
+                        </div>
+                        <div class="page__info-froms">
+                            <div>Ваше сообщение:</div>
+                            <textarea name="page__textarea" id="1"></textarea>
+                        </div>
+                        <button type="submit">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
