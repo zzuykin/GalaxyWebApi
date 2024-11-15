@@ -14,6 +14,7 @@ namespace WebApplication1.Extentions
             services.AddScoped<LoadUserFromCookieAttribute>();
             services.AddTransient<IFeedbackManager, FeedbackManager>();
             services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IMessageManager, MessageManager>();
         }
     }
 }

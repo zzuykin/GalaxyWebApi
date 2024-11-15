@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Features.Filters;
+using WebApplication1.Features.Interfaces.Managers;
 using WebApplication1.Features.ViewModels;
 
 namespace WebApplication1.Controllers
@@ -11,8 +12,11 @@ namespace WebApplication1.Controllers
     {
         public const string Contact = "Contacts";
 
-        public ContactsController()
+        private readonly IMessageManager _messageManager;
+
+        public ContactsController(IMessageManager messageManager)
         {
+            _messageManager = messageManager;
         }
 
         [ServiceFilter(typeof(LoadUserFromCookieAttribute))]

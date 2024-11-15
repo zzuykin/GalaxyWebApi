@@ -17,5 +17,7 @@ namespace Galaxy.Storage.DataBase
         public virtual DbSet<Order> Orders { get; set; }
 
         public virtual DbSet<Feedback> Feedbacks { get; set; }
+
+        public virtual DbSet<Message> Messages { get; set; }
     }
 }
