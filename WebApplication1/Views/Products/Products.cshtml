@@ -1,0 +1,59 @@
+﻿@using Galaxy.Storage.Models
+@model List<Product>
+@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="page__body">
+                <div class="page__column">
+                    <div class="page__menu">
+                        <div class="page__menu-list">
+                            <a href=@Url.Action("Index", "Home")>Главная</a>
+                            <a href=@Url.Action("Products", "Products")>Каталог</a>
+                            <a href=@Url.Action("AboutUs", "AboutUs")>О нас</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Контакты</a>
+                        </div>
+                    </div>
+                    <div class="page__info">
+                        <div class="page__info-content">
+
+                            <div class="page__info-title">
+                                <h1>Продукты</h1>
+                            </div>
+                            <div class="page__info-text">
+                                <div class="page__info-text-p">
+                                    <p>«Галактика» несет ответственность за каждый свой продукт и проект. Мы гарантируем заказчикам внедрение наших программных решений в установленные сроки, с фиксированным бюджетом и минимальными для предприятия рисками. </p>
+                                    <p>Стратегическое и среднесрочное планирование, управление текущими операциями по всем направлениям деятельности компании, бизнес-мониторинг – каждая из этих задач важна для современного предприятия и для выполнения каждой из них корпорация «Галактика» предлагает лучшие глубоко интегрированные специализированные решения.</p>
+                                </div>
+                            </div>
+                            <div class="page__info-catalog-body">
+                                @for (var i = 0; i < @Model.Count; i++)
+                                {
+                                    <div class="page__info-catalog-item">
+                                        <div class="page__info-catalog-item-title">
+                                            @Model[i].ProductName
+                                        </div>
+                                        <div class="page__info-catalog-item-img">
+                                            <img src="@Url.Content(Model[i].ProductImgUrl)" alt="consalting">
+                                        </div>
+                                        <div class="page__info-catalog-item-descript">
+                                            @Model[i].ProductDescription
+                                        </div>
+                                        <div class="page__info-catalog-item-link">
+                                            <a href=@Url.Action(Model[i].ProductUrl, "Products")>Подробнее</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

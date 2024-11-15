@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Galaxy.Storage.Models
 {
+    [Index(nameof(IsnUser))]
     public class Order
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]

@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
             ViewData["EditUser"] = editUser;
-            return View(editUser);
+            return View();
         }
 
         [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> SubmitMess(string clientName, string clientEmail, string messageSubj, string messageText)
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
-            if (editUser != null) {
+            if (editUser.ClientEmail != null) {
                 EditMessage editMessage = new EditMessage
                 {
                     ClientName = editUser.ClientName,

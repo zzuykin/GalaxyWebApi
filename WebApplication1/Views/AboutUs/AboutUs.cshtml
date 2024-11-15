@@ -1,0 +1,68 @@
+﻿@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="page__body">
+                <div class="page__column">
+                    <div class="page__menu">
+                        <div class="page__menu-list">
+                            <a href=@Url.Action("Index", "Home")>Главная</a>
+                            <a href=@Url.Action("Products", "Products")>Каталог</a>
+                            <a href=@Url.Action("AboutUs", "AboutUs")>О нас</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Контакты</a>
+                        </div>
+                    </div>
+                    <div class="about-us">
+                        <div class="about-us__body">
+                            <div class="about-us__title">
+                                <h1>О корпарации</h1>
+                            </div>
+                            <div class="about-us__info">
+                                <p>Корпорация «Галактика» — российский разработчик национальной платформы цифровизации для крупных предприятий, холдингов и государственных корпораций и бизнес-приложений по планированию и управлению производством, производственными активами и надежностью.</p>
+
+                                <p>«Галактика» создает ИТ-решения, которые позволяют нашим заказчикам повышать конкурентоспособность России и способствуют её переходу к цифровой экономике.</p>
+
+                                <p>«Галактика» несет ответственность за каждый свой продукт и проект. Мы гарантируем заказчикам внедрение наших программных решений в установленные сроки, с фиксированным бюджетом и минимальными для предприятия рисками.</p>
+
+                                <p>Стратегическое и среднесрочное планирование, управление текущими операциями по всем направлениям деятельности компании, бизнес-мониторинг – каждая из этих задач важна для современного предприятия и для выполнения каждой из них корпорация «Галактика» предлагает лучшие глубоко интегрированные специализированные решения.</p>
+
+                                <p>Огромный опыт команды корпорации по разработке и внедрению позволяет оперативно реагировать на изменения в законодательстве и в бизнесе заказчика, гарантировать своевременную обратную связь по любому запросу, получать прямую техническую поддержку от разработчика.</p>
+
+                                <p>Офисы и центры разработки «Галактики» находятся в Москве, Санкт-Петербурге, Екатеринбурге, Минске и Алматы. Партнерская сеть корпорации насчитывает более 200 компаний и позволяет заказчикам быть уверенными в оперативном решении возникающих вопросов и надежной поддержке по всей России и странах СНГ.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-us__pages">
+                        <div class="about-us__title">
+                            <h1>Ключевые факты</h1>
+                        </div>
+                        <div class="about-us__page">
+                            <div class="about-us__icon"><img src ="@Url.Content("~/img/about-us/012-sports.png")" alt=""></div>
+                            <div class="about-us__icon-title">Пионеры российского ИТ-рынка</div>
+                        </div>
+                        <div class="about-us__page">
+                            <div class="about-us__icon"><img src="@Url.Content("~/img/about-us/007-money.png")" alt=""></div>
+                            <div class="about-us__icon-title">Постоянные инновации</div>
+                        </div>
+                        <div class="about-us__page">
+                            <div class="about-us__icon"><img src="@Url.Content("~/img/about-us/010-interface.png")" alt=""></div>
+                            <div class="about-us__icon-title">Проектный опыт</div>
+                        </div>
+                        <div class="about-us__page">
+                            <div class="about-us__icon"><img src="@Url.Content("~/img/about-us/002-diploma.png")" alt=""></div>
+                            <div class="about-us__icon-title">
+                                Лицензии
+                                и сертификаты
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
