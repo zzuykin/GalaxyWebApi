@@ -1,6 +1,13 @@
 ﻿@using WebApplication1.Features.ViewModels
+@using System.Web;
 @{
     var editUser = ViewData["EditUser"] as EditUser;
+}
+
+@{
+    string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    string returnUrl = Url.Action(currentAction, currentController);
 }
 
 <!DOCTYPE html>
@@ -35,6 +42,7 @@
                                 {
                                     @using (Html.BeginForm("Logout", "Home", FormMethod.Post))
                                     {
+                                        <input type="hidden" name="returnUrl" value="@HttpUtility.UrlEncode(returnUrl)" />
                                         <button type="submit">Выйти</button>
                                     }
                                 }
@@ -62,7 +70,7 @@
 
                         <label for="password">Пароль</label>
                         <input type="password" id="password" name="password" required>
-
+                        <input type="hidden" id="returnUrl" name="returnUrl" value="@HttpUtility.UrlEncode(returnUrl)" />
                         <button type="submit">Войти</button>
                     </form>
                 }
@@ -103,7 +111,7 @@
                             <input type="checkbox" id="privacyPolicy" required>
                             <label for="privacyPolicy">Я соглашаюсь с политикой конфиденциальности</label>
                         </div>
-
+                        <input type="hidden" id="returnUrl" name="returnUrl" value="@HttpUtility.UrlEncode(returnUrl)" />
                         <button type="submit">Зарегистрироваться</button>
                     </form>
                     @if (TempData["ErrorRegEmail"] != null)

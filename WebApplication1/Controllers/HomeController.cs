@@ -55,12 +55,17 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost(nameof(Register), Name = nameof(Register))]
-        public async Task<IActionResult> Register(string firstname, string lastname, string emailReg, string password)
+        public async Task<IActionResult> Register(string firstname, string lastname, string emailReg, string password, string returnUrl)
         {
+            returnUrl = System.Net.WebUtility.UrlDecode(returnUrl);
+            if (string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                returnUrl = "Home/Index";
+            }
             if (_userManager.isEmailReg(emailReg))
             {
                 TempData["ErrorRegEmail"] = "Пользователь с таким email уже зарегистрирован";
-                return View("Index");
+                return Redirect(returnUrl);
             }
             var hashPasword = _userManager.HashPassword(password);
             var editUser = new EditUser
@@ -87,17 +92,22 @@ namespace WebApplication1.Controllers
                 Expires = DateTime.Now.AddDays(1)
             });
 
-            return RedirectToAction("Index");
+            return Redirect(returnUrl);
         }
 
         [HttpPost(nameof(Login), Name = nameof(Login))]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login(string email, string password, string returnUrl)
         {
             var user = _userManager.GetUserByEmail(email);
-            if(user == null)
+            returnUrl = System.Net.WebUtility.UrlDecode(returnUrl);
+            if (string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                returnUrl = "Home/Index";
+            }
+            if (user == null)
             {
                 TempData["ErrorMessage"] = "Неверный логин или пароль";
-                return RedirectToAction("Index");
+                return Redirect(returnUrl);
             }
 
             if (_userManager.VerifyPassword(password, user.ClientPassword))
@@ -112,20 +122,25 @@ namespace WebApplication1.Controllers
                     Expires = DateTime.Now.AddDays(1)
                 });
                 //Response.Cookies.Append("auth_cookie", "user_authenticated", new CookieOptions { HttpOnly = true, Expires = DateTime.Now.AddDays(1) });
-                return RedirectToAction("Index");
+                return Redirect(returnUrl);
             }
             else
             {
-                ViewData["ErrorMessage"] = "Неверный email или пароль.";
-                return View("Index");
+                TempData["ErrorMessage"] = "Неверный логин или пароль";
+                return Redirect(returnUrl);
             }
         }
 
         [HttpPost(nameof(Logout), Name = nameof(Logout))]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Logout(string returnUrl)
         {
             Response.Cookies.Delete("auth_cookie");
-            return RedirectToAction("Index");
+            returnUrl = System.Net.WebUtility.UrlDecode(returnUrl);
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         //public EditUser GetUserData()

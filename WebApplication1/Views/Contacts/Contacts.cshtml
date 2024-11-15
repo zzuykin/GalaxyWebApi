@@ -1,4 +1,9 @@
-﻿@{
+﻿@using WebApplication1.Features.ViewModels
+@{
+    var editUser = ViewData["EditUser"] as EditUser;
+}
+
+@{
 
     Layout = "~/Views/Shared/Layout.cshtml";
 }
@@ -39,27 +44,35 @@
                 </div>
             </div>
             <div class="contact__form">
-                <div class="page__info-from">
-                    <div class="page__info-form-body">
-                        <h1>Напишите нам!</h1>
-                        <div class="page__info-froms">
-                            <div>Имя:</div>
-                            <input type="text">
-                        </div>
-                        <div class="page__info-froms">
-                            <div>Email:</div>
-                            <input type="text" placeholder="mymail@example.com">
-                        </div>
+                <div class="page__info-form-body">
+                    <h1>Напишите нам!</h1>
+                    @using (Html.BeginForm("SubmitMess", "Contacts", FormMethod.Post))
+                    {
+                        @if (!Context.Request.Cookies.ContainsKey("auth_cookie"))
+                        {
+                            <div class="page__info-froms">
+                                <div>Имя:</div>
+                                <input id="clientName" name="clientName" type="text" />
+                            </div>
+                            <div class="page__info-froms">
+                                <div>Email:</div>
+                                <input id="clientEmail" name="clientEmail" type="text" placeholder="mymail@example.com" />
+                            </div>
+                        }
                         <div class="page__info-froms">
                             <div>Тема:</div>
-                            <input type="text" placeholder="">
+                            <input id="messageSubj" name="messageSubj" type="text" />
                         </div>
                         <div class="page__info-froms">
                             <div>Ваше сообщение:</div>
-                            <textarea name="page__textarea" id="1"></textarea>
+                            <textarea id="messageText" name="messageText" required></textarea>
                         </div>
                         <button type="submit">Отправить</button>
-                    </div>
+                    }
+                    @if (TempData["MessageMess"] != null)
+                    {
+                        <div class="success-message1">@TempData["MessageMess"]</div>
+                    }
                 </div>
             </div>
         </div>
