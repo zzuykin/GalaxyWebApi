@@ -27,6 +27,49 @@ namespace WebApplication1.Controllers
             return View(products);
         }
 
+        [HttpGet(nameof(ERP), Name = nameof(ERP))]
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
+        public async Task<ActionResult> ERP()
+        {
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
+            ViewData["EditUser"] = editUser;
+            return View();
+        }
 
+        [HttpGet(nameof(EAM), Name = nameof(EAM))]
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
+        public async Task<ActionResult> EAM()
+        {
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
+            ViewData["EditUser"] = editUser;
+            return View();
+        }
+
+        [HttpGet(nameof(AMM), Name = nameof(AMM))]
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
+        public async Task<ActionResult> AMM()
+        {
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
+            ViewData["EditUser"] = editUser;
+            return View();
+        }
+
+        [HttpGet(nameof(MES), Name = nameof(MES))]
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
+        public async Task<ActionResult> MES()
+        {
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
+            ViewData["EditUser"] = editUser;
+            return View();
+        }
+
+        [HttpGet(nameof(BI), Name = nameof(BI))]
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
+        public async Task<ActionResult> BI()
+        {
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
+            ViewData["EditUser"] = editUser;
+            return View();
+        }
     }
 }
