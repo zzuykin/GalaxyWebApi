@@ -1,0 +1,97 @@
+﻿@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="page__body">
+                <div class="page__column">
+                    <div class="page__menu">
+                        <div class="page__menu-list">
+                            <a href=@Url.Action("Index", "Home")>Главная</a>
+                            <a href=@Url.Action("Products", "Products")>Каталог</a>
+                            <a href=@Url.Action("AboutUs", "AboutUs")>О нас</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Контакты</a>
+                        </div>
+                    </div>
+                    <div class="page__info">
+                        <div class="page__info-content">
+
+                            <div class="page__info-title">
+                                <h1>Услуги</h1>
+                            </div>
+                            <div class="page__info-text">
+                                <div class="page__info-text-p">
+                                    <p>Корпорация «Галактика» обеспечивает полный жизненный цикл проекта из одних рук на стадиях разработки, консалтинга, внедрения, технической и пользовательской поддержки.</p>
+                                    <p>Мы несем централизованную ответственность за каждый свой продукт и проект. Это гарантирует заказчикам внедрение наших программных решений в установленные сроки, с фиксированным бюджетом и минимальными для заказчика рисками.</p>
+                                </div>
+                            </div>
+                            <div class="page__info-catalog-body">
+                                <div class="page__info-catalog-item-serv">
+                                    <div class="page__info-catalog-item-title">
+                                        Консалтинг
+                                    </div>
+                                    <div class="page__info-catalog-item-img">
+                                        <img src="@Url.Content("~/img/catalog/consalting.jpg")" alt="consalting">
+                                    </div>
+                                    <div class="page__info-catalog-item-descript">
+                                        Корпорация «Галактика» обеспечивает полный жизненный цикл проекта из одних рук на стадиях разработки, консалтинга, внедрения, технической и пользовательской поддержки.
+                                    </div>
+                                    <div class="page__info-catalog-item-link">
+                                        <a target="_blank" href="https://galaktika.ru/uslugi#con">Подробнее</a>
+                                    </div>
+                                </div>
+                                <div class="page__info-catalog-item-serv">
+                                    <div class="page__info-catalog-item-title">
+                                        Внедрение
+                                    </div>
+                                    <div class="page__info-catalog-item-img">
+                                        <img src="@Url.Content("~/img/catalog/vnedrenie.png")" alt="">
+                                    </div>
+                                    <div class="page__info-catalog-item-descript">
+                                        В корпорации «Галактика» применяются проверенные опытом и временем промышленные технологии выполнения проекта автоматизации управления. Это позволяет провести внедрение наших решений в короткие сроки, с фиксированным бюджетом и минимальными для заказчика рисками.
+                                    </div>
+                                    <div class="page__info-catalog-item-link">
+                                        <a target="_blank" href="https://galaktika.ru/uslugi#vned">Подробнее</a>
+                                    </div>
+                                </div>
+                                <div class="page__info-catalog-item-serv">
+                                    <div class="page__info-catalog-item-title">
+                                        Сопровождение
+                                    </div>
+                                    <div class="page__info-catalog-item-img">
+                                        <img src="@Url.Content("~/img/catalog/sopr.jpg")" alt="">
+                                    </div>
+                                    <div class="page__info-catalog-item-descript">
+                                        Техническую поддержку и сопровождение оказывают только дочерние предприятия корпорации «Галактика», региональные отделения и сертифицированные партнеры. Таким образом обеспечивается высокое качество обслуживания всех пользователей, где бы они ни находились.
+                                        Ни одно обращение заказчика не останется без внимания – это политика корпорации «Галактика».
+                                    </div>
+                                    <div class="page__info-catalog-item-link">
+                                        <a target="_blank" href="https://galaktika.ru/uslugi#sop">Подробнее</a>
+                                    </div>
+                                </div>
+                                <div class="page__info-catalog-item-serv">
+                                    <div class="page__info-catalog-item-title">
+                                        Консультационный центр
+                                    </div>
+                                    <div class="page__info-catalog-item-img">
+                                        <img src="@Url.Content("~/img/catalog/con.jpg")" alt="">
+                                    </div>
+                                    <div class="page__info-catalog-item-descript">
+                                        Цель работы Консультационного центра корпорации «Галактика» – организация и проведение консультаций, семинаров, тренингов и подготовка специалистов к эффективному использованию функциональных возможностей программных продуктов корпорации.
+                                    </div>
+                                    <div class="page__info-catalog-item-link">
+                                        <a target="_blank" href="https://galaktika.ru/uslugi#kc">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

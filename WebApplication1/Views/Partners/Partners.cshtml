@@ -1,0 +1,83 @@
+﻿@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="page__body">
+                <div class="page__column">
+                    <div class="page__menu">
+                        <div class="page__menu-list">
+                            <a href=@Url.Action("Index", "Home")>Главная</a>
+                            <a href=@Url.Action("Products", "Products")>Каталог</a>
+                            <a href=@Url.Action("AboutUs", "AboutUs")>О нас</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Контакты</a>
+                        </div>
+                    </div>
+                    <div class="page__info">
+                        <div class="page__info-content">
+
+                            <div class="page__info-title">
+                                <h1>Наши партнёры</h1>
+                            </div>
+                            <div class="page__info-text">
+                                <div class="page__info-text-p">
+                                    <p>Партнерское сообщество «Галактики» — это не просто компании, с которыми поддерживаются деловые отношения, это наши друзья, которых мы ценим и уважаем. Вместе мы делаем бизнес заказчиков успешнее, обеспечивая предприятия России и стран ЕАЭС качественным программным обеспечением и эффективной поддержкой. Партнеры «Галактики» осуществляют около 50% внедрений систем, разработанных корпорацией.</p>
+                                </div>
+                            </div>
+                            <div class="page__info-catalog-body">
+                                <a class="page__parner-item-link" target="_blank" href="https://terralink.ru/">
+                                    <div class="page__parner-item">
+                                        <div class="page__partner-title">ТерраЛинк</div>
+                                        <div class="page__partner-icon">
+                                            <img src="@Url.Content("~/img/partners/terralink.png")" alt="">
+                                        </div>
+                                        <div class="page__partner-status">
+                                            Стратегический партнёр
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="page__parner-item-link" target="_blank" href="https://ultimatec.ru/">
+                                    <div class="page__parner-item">
+                                        <div class="page__partner-title">УльтимаТек</div>
+                                        <div class="page__partner-icon">
+                                            <img src="@Url.Content("~/img/partners/ultimatek.png")" alt="">
+                                        </div>
+                                        <div class="page__partner-status">
+                                            Стратегический партнёр
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="page__parner-item-link" target="_blank" href="https://fitconsulting.ru/">
+                                    <div class="page__parner-item">
+                                        <div class="page__partner-title">ФитКонсалтинг</div>
+                                        <div class="page__partner-icon">
+                                            <img src="@Url.Content("~/img/partners/fitconsulting.png")" alt="">
+                                        </div>
+                                        <div class="page__partner-status">
+                                            Партнёр
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="page__parner-item-link" target="_blank" href="https://mirainc.ru/">
+                                    <div class="page__parner-item">
+                                        <div class="page__partner-title">МИРАИНК</div>
+                                        <div class="page__partner-icon">
+                                            <img src="@Url.Content("~/img/partners/mirainc.png")" alt="">
+                                        </div>
+                                        <div class="page__partner-status">
+                                            Партнёр
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

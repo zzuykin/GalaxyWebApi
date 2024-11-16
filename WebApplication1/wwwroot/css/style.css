@@ -898,11 +898,19 @@ html {
   padding: 30px;
   min-height: 500px;
 }
+
+.industies__esb-bag {
+    background: url("../img/products/bg_cpm.jpg") 0 0 no-repeat;
+    background-size: cover;
+    padding: 30px;
+    min-height: 500px;
+}
+
 .industies__list h1 {
-  margin-top: 0px;
-  margin-bottom: 20px;
-  font-size: 32px;
-  font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
 }
 .industies__list h2 {
   margin-top: 0px;

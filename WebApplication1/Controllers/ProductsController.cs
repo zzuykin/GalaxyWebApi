@@ -71,5 +71,14 @@ namespace WebApplication1.Controllers
             ViewData["EditUser"] = editUser;
             return View();
         }
+
+        [HttpGet(nameof(ESB), Name = nameof(ESB))]
+        [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
+        public async Task<ActionResult> ESB()
+        {
+            var editUser = HttpContext.Items["EditUser"] as EditUser;
+            ViewData["EditUser"] = editUser;
+            return View();
+        }
     }
 }

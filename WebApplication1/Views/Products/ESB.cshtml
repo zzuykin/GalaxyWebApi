@@ -1,0 +1,85 @@
+﻿@{
+
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="page__body">
+                <div class="page__column">
+                    <div class="page__menu">
+                        <div class="page__menu-list">
+                            <a href=@Url.Action("Index", "Home")>Главная</a>
+                            <a href=@Url.Action("Products", "Products")>Каталог</a>
+                            <a href=@Url.Action("AboutUs", "AboutUs")>О нас</a>
+                            <a href=@Url.Action("Contacts", "Contacts")>Контакты</a>
+                        </div>
+                    </div>
+                    <div class="about-us__pages">
+                        <div class="about-us__title">
+                            <h1>«Галактика ESB»</h1>
+                        </div>
+                        <div class="page__info-text">
+                            <div class="page__info-text-p">
+                                <p>Все бизнес-данные в едином информационном пространстве. </p>
+                                <p>Платформа «Галактика ESB» предоставляет удобный и надежный механизм управления миграцией данных в информационной среде организации. Интеграционная шина разработана по модульной архитектуре, которая в сочетании с используемыми передовыми технологиями позволяет настроить интеграцию разнородных решений с минимальными затратами и обладает при этом широкими возможностями для кастомизации и расширения.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="industies">
+    <div class="industies__esb-bag" id="obor">
+        <div class="container">
+            <div class="products__title"><h1>Преимущества</h1></div>
+            <div class="products__flex">
+                <div class="products__colums">
+                    <div class="products__h3"></div>
+                    <div class="products__info-list">
+                        <ul>
+                            <li>Используются передовые инструменты и технологии</li>
+                            <li>Используя отечественный продукт, вы не подвергаетесь санкционным рискам</li>
+                            <li>Собственная разработка, позволяющая быстро и гибко дорабатывать продукт под требования заказчика без обращения к сторонним разработчикам</li>
+                    </div>
+                </div>
+                <div class="products__colums">
+                    <div class="products__h3"></div>
+                    <div class="products__info-list">
+                        <ul>
+                            <li>Коробочный продукт включает адаптеры к системам «Галактика ERP», «Галактика AMM», «Галактика EAM», «Галактика Казначейство», 1С, СУБД (MS SQL, Oracle, PostgreSQL), ActiveDirectory, файловый адаптер</li>
+                            <li>Системы не нужно дополнительно адаптировать к работе с ESB</li>
+                            <li>Консультации и техническое сопровождение пользователей в любое время по всем вопросам использования продукта</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container">
+        <div class="page">
+            <div class="about-us__pages">
+                <div class="about-us__title-dop">
+                    <h1>Функциональные возможности</h1>
+                </div>
+                <div class="industies__list">
+                    <!-- <h2>Продукты корпорации «Галактика» решают широкий круг задач в нефтегазовой сфере:</h2> -->
+                    <ul>
+                        <li>• Адаптеры работают с операционной системой Windows, брокер RabbitMQ – c Windows, Linux, MacOS</li>
+                        <li>• СВертикальное (количество систем) и горизонтальное (обмен данными в пределах экземпляров одной системы) масштабирование</li>
+                        <li>• Скорость обработки составляет более 100 000 сообщений в час</li>
+                        <li>• Продвинутые возможности журнализации и диагностики: разделение сообщений журналов по уровням; различные типы получателей журналов (файл, БД, журнал Windows и др.); сбор разрозненных журналов в единое хранилище; централизованный анализ журналов</li>
+                    </ul>
+                </div>
+                <div class="products__info-to-order">
+                    Для расчета стоимости необходимой Вам конфигурации обращайтесь по электронному адресу market@galaktika.ru
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
