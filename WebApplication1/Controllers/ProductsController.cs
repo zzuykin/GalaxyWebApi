@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
     [Route("Product")]
     public class ProductsController : Controller
     {
-        public const string Product = "AboutUs";
+        public const string Product = "Product";
         public readonly IProductManager _productManager;
 
         public ProductsController(IProductManager productManager)

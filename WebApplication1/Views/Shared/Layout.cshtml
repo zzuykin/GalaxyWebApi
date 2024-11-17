@@ -67,7 +67,6 @@
                     <form @* asp-action="Login" asp-controller="Home" method="post" *@>
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" required>
-
                         <label for="password">Пароль</label>
                         <input type="password" id="password" name="password" required>
                         <input type="hidden" id="returnUrl" name="returnUrl" value="@HttpUtility.UrlEncode(returnUrl)" />
@@ -134,9 +133,15 @@
                 <a href=@Url.Action("Servises", "Servises")>Услуги</a>
                 <a href=@Url.Action("Partners", "Partners")>Партнёры</a>
                 <div class="search">
-                    <input type="text" id="searchInput" placeholder="Поиск по сайту...">
-                    <button type="button" onclick="searchText()">Найти</button>
-                    <button id="clearButton" onclick="clearSearch()" style="display: none;">✖</button>
+                    <input type="text" id="searchInput" placeholder="Поиск по сайту..." />
+                    <button type="button" id="clearButton">✖</button>
+                    <div id="searchResults" class="search-results">
+                        <div class="search-results-header">
+                            <span>Результаты поиска</span>
+                            @* <button class="close-button" onclick="hideSearchResults()">✖</button> *@
+                        </div>
+                        <ul class="resultsList" id="resultsList"></ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,5 +158,6 @@
     </div>
 </body>
 <script src="~/js/index.js"></script>
-<script src="~/js/search.js"></script>
+@* <script src="~/js/search.js"></script> *@
+<script src="~/js/superSearch.js"></script>
 </html>

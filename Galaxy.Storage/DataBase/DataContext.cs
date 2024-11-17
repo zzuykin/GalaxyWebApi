@@ -21,5 +21,7 @@ namespace Galaxy.Storage.DataBase
         public virtual DbSet<Message> Messages { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Router> Routers { get; set; }
     }
 }

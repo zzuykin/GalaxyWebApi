@@ -997,3 +997,93 @@ html {
   left: 0;
   top: 3px;
 }/*# sourceMappingURL=style.css.map */
+
+.search {
+    position: relative; /* Контекст для абсолютного позиционирования */
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+    .search input {
+        width: 200px;
+        padding: 8px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .search button {
+        padding: 8px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+/* Окно результатов */
+.search-results {
+    position: absolute;
+    top: 100%; /* Под полем ввода */
+    left: 44%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Смещение для центрирования */
+    width: 200px; /* Ширина окна */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Скрыто по умолчанию */
+    z-index: 1000;
+}
+
+.search-results-header {
+    display: flex;
+    justify-content: center; /* Центрируем текст */
+    align-items: center;
+    padding: 8px;
+    background-color: #f1f1f1;
+    color: black;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+}
+
+    .search-results-header .close-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: none;
+        border: none;
+        color: #333;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+.search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 160px; /* Ограничение по высоте */
+    overflow-y: auto;
+}
+
+    .search-results ul li {
+        padding: 8px;
+        text-align: center; /* Центрируем ссылки */
+        border-bottom: 1px solid #eee;
+        
+    }
+
+        .search-results ul li:last-child {
+            border-bottom: none; /* Убираем последнюю линию */
+        }
+
+        .search-results ul li a {
+            text-decoration: none;
+            color: white; /* Цвет текста */
+            padding: 10px;
+            display: block; /* Полный клик на строку */
+            border-radius: 10px;
+        }
