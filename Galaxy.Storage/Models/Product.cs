@@ -24,5 +24,7 @@ namespace Galaxy.Storage.Models
 
         public string ProductUrl { get; set; }
 
+        public float Price { get;set; }
+
     }
 }
