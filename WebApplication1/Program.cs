@@ -2,6 +2,7 @@ using Galaxy.Storage.DataBase;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Extentions;
 using Galaxy.Logic.Extentions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,13 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddWebServices();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDataProtection();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.Cookie.HttpOnly = true;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        });
 
 var app = builder.Build();
 

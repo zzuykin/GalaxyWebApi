@@ -120,6 +120,7 @@ namespace WebApplication1.Controllers
                     HttpOnly = true,
                     Secure = true,
                     Expires = DateTime.Now.AddDays(1)
+                    //Expires = DateTime.Now.AddMinutes(1)
                 });
                 //Response.Cookies.Append("auth_cookie", "user_authenticated", new CookieOptions { HttpOnly = true, Expires = DateTime.Now.AddDays(1) });
                 return Redirect(returnUrl);
@@ -142,24 +143,6 @@ namespace WebApplication1.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
-        //public EditUser GetUserData()
-        //{
-        //    if (Request.Cookies.TryGetValue("auth_cookie", out string protectedData))
-        //    {
-        //        try
-        //        {
-        //            string jsonData = _protector.Unprotect(protectedData);
-        //            EditUser userModel = JsonSerializer.Deserialize<EditUser>(jsonData);
-        //            return userModel;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return new EditUser();
-        //        }
-        //    }
-        //    return new EditUser();
-        //}
     }
 }
 
