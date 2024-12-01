@@ -5,7 +5,7 @@ namespace WebApplication1.Features.Interfaces.Managers
 {
     public interface IUserManager
     {
-        public Guid Create(EditUser editUser);
+        public User Create(EditUser editUser);
         public User GetUserByEmail(string email);
 
         public string HashPassword(string password);

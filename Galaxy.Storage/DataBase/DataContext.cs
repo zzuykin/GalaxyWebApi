@@ -2,7 +2,6 @@
 
 using Galaxy.Storage.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Galaxy.Storage.DataBase
 {
@@ -23,5 +22,22 @@ namespace Galaxy.Storage.DataBase
         public virtual DbSet<Product> Products { get; set; }
 
         public virtual DbSet<Router> Routers { get; set; }
+
+        public virtual DbSet<Cart> Carts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Cart)
+                .WithMany(c => c.CartItems)
+                .HasForeignKey(ci => ci.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany()
+                .HasForeignKey(ci => ci.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }

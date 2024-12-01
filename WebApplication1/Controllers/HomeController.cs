@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using WebApplication1.Features.Filters;
 using WebApplication1.Features.Interfaces.Managers;
+using WebApplication1.Features.Managers;
 using WebApplication1.Features.ViewModels;
 
 
@@ -16,13 +17,14 @@ namespace WebApplication1.Controllers
         private readonly IFeedbackManager _feedbackManager;
         private readonly IUserManager _userManager;
         private readonly IDataProtector _protector;
+        private readonly ICartManager _cartManager;
 
-
-        public HomeController(IFeedbackManager feedbackManager, IUserManager userManager, IDataProtectionProvider dataProtectionProvider)
+        public HomeController(IFeedbackManager feedbackManager, IUserManager userManager, IDataProtectionProvider dataProtectionProvider, ICartManager cartManager)
         {
             _feedbackManager = feedbackManager;
             _userManager = userManager;
             _protector = dataProtectionProvider.CreateProtector("UserCookieProtection");
+            _cartManager = cartManager;
         }
 
         [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
@@ -75,19 +77,21 @@ namespace WebApplication1.Controllers
                 ClientEmail = emailReg,
                 ClientPassword = hashPasword,
             };
-            _userManager.Create(editUser);
+            var user= _userManager.Create(editUser);
+            await _cartManager.AddCart(user.IsnNode);
+             
 
             //Response.Cookies.Append("auth_cookie", "user_authenticated", new CookieOptions { HttpOnly = true, Expires = DateTime.Now.AddDays(1) });
 
             // Преобразуем модель в JSON
-            string jsonData = JsonSerializer.Serialize(editUser);
+            string jsonData = JsonSerializer.Serialize(user);
 
             string protectedData = _protector.Protect(jsonData);
 
             // Сохраним зашифрованную строку в cookie
             Response.Cookies.Append("auth_cookie", protectedData, new CookieOptions
             {
-                HttpOnly = true,
+                HttpOnly = false,
                 Secure = true,
                 Expires = DateTime.Now.AddDays(1)
             });
@@ -117,7 +121,7 @@ namespace WebApplication1.Controllers
                 string protectedData = _protector.Protect(jsonData);
                 Response.Cookies.Append("auth_cookie", protectedData, new CookieOptions
                 {
-                    HttpOnly = true,
+                    HttpOnly = false,
                     Secure = true,
                     Expires = DateTime.Now.AddDays(1)
                     //Expires = DateTime.Now.AddMinutes(1)

@@ -33,6 +33,10 @@
                         <div class="header__form1">
                             @if (Context.Request.Cookies.ContainsKey("auth_cookie"))
                             {
+                                <div class="header__cart-icon" onclick="showCartModal()">
+                                    <img src="@Url.Content("~/img/cart-icon.png")" alt="Alternate Text" />
+                                    <div class="cart__count"><span></span></div>
+                                </div>
                                 <div class="header__username">
                                     <span>@(@editUser.ClientName + " " + editUser.ClientSurname)</span>
                                 </div>
@@ -55,6 +59,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div id="cartModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="hideCartModal()">&times;</span>
+                <h2>Ваша корзина</h2>
+                <div id="cartItems">
+                    <!-- Содержимое корзины будет загружено здесь -->
+                </div>
+@*                 <button onclick="proceedToCheckout()">Перейти к оформлению</button> *@
             </div>
         </div>
         <!-- Login Modal -->
@@ -160,4 +174,6 @@
 <script src="~/js/index.js"></script>
 @* <script src="~/js/search.js"></script> *@
 <script src="~/js/superSearch.js"></script>
+<script src="~/js/cart.js"></script>
+<script src="~/js/CountOfCart.js"></script>
 </html>

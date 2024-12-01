@@ -43,6 +43,9 @@
                                         <div class="page__info-catalog-item-descript">
                                             @Model[i].ProductDescription
                                         </div>
+                                        <div class="page__info-catalog-item-descript">
+                                            Цена: @Model[i].Price руб.
+                                        </div>
                                         <div class="page__info-catalog-item-link">
                                             <a href=@Url.Action(Model[i].ProductUrl, "Products")>Подробнее</a>
                                         </div>

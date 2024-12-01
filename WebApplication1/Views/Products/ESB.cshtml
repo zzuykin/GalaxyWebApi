@@ -1,6 +1,9 @@
-﻿@{
+﻿@using Galaxy.Storage.Models
+
+@{
 
     Layout = "~/Views/Shared/Layout.cshtml";
+    var product = ViewData["EditProduct"] as Product;
 }
 
 <div class="content">
@@ -76,9 +79,21 @@
                         <li>• Продвинутые возможности журнализации и диагностики: разделение сообщений журналов по уровням; различные типы получателей журналов (файл, БД, журнал Windows и др.); сбор разрозненных журналов в единое хранилище; централизованный анализ журналов</li>
                     </ul>
                 </div>
-                <div class="products__info-to-order">
-                    Для расчета стоимости необходимой Вам конфигурации обращайтесь по электронному адресу market@galaktika.ru
-                </div>
+                @if (Context.Request.Cookies.ContainsKey("auth_cookie"))
+                {
+                    <div class="products__info-to-order">
+                        Цена: @product.Price руб
+                    </div>
+                    <div class="add-to_cart-flex">
+                        <button class="add-to_cart" onclick="addToCart(@product.IsnNode)">Добавить в корзину</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="products__info-to-order">
+                        Для покупки необходимо зарегистрироваться
+                    </div>
+                }
             </div>
         </div>
     </div>

@@ -22,5 +22,11 @@ namespace WebApplication1.Features.Managers
             var products = _productRepository.GetAllProduct(_dataContext).ToList();
             return products;
         }
+
+        public Product GetProductById(int id)
+        {
+            var product = _productRepository.GetById(_dataContext, id);
+            return product;
+        }
     }
 }

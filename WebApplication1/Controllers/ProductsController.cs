@@ -32,7 +32,9 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> ERP()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var product = _productManager.GetProductById(1);
             ViewData["EditUser"] = editUser;
+            ViewData["EditProduct"] = product;
             return View();
         }
 
@@ -41,7 +43,9 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> EAM()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var product = _productManager.GetProductById(2);
             ViewData["EditUser"] = editUser;
+            ViewData["EditProduct"] = product;
             return View();
         }
 
@@ -50,7 +54,9 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> AMM()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var product = _productManager.GetProductById(3);
             ViewData["EditUser"] = editUser;
+            ViewData["EditProduct"] = product;
             return View();
         }
 
@@ -59,7 +65,9 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> MES()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var product = _productManager.GetProductById(4);
             ViewData["EditUser"] = editUser;
+            ViewData["EditProduct"] = product;
             return View();
         }
 
@@ -68,7 +76,9 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> BI()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var product = _productManager.GetProductById(5);
             ViewData["EditUser"] = editUser;
+            ViewData["EditProduct"] = product;
             return View();
         }
 
@@ -77,7 +87,9 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> ESB()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var product = _productManager.GetProductById(6);
             ViewData["EditUser"] = editUser;
+            ViewData["EditProduct"] = product;
             return View();
         }
     }

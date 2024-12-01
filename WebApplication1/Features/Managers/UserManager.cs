@@ -22,10 +22,10 @@ namespace WebApplication1.Features.Managers
             this.mapper = mapper;
         }
 
-        public Guid Create(EditUser editUser)
+        public User Create(EditUser editUser)
         {
             var user = mapper.Map<User>(editUser);
-            return _userRepository.Create(_dataContext, user).IsnNode;
+            return _userRepository.Create(_dataContext, user);
         }
 
         public User GetUserByEmail(string email)

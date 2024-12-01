@@ -13,6 +13,7 @@ namespace Galaxy.Logic.Extentions
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IMessageRepository, MessageRepository>();
             services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddSingleton<ICartRepository, CartRepository>();
         }
     }
 }

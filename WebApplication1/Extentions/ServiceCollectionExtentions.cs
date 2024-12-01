@@ -17,6 +17,7 @@ namespace WebApplication1.Extentions
             services.AddTransient<IMessageManager, MessageManager>();
             services.AddTransient<IProductManager, ProductManager>();
             services.AddTransient<IRouterManager, RouterManager>();
+            services.AddTransient<ICartManager, CartManager>();
         }
     }
 }

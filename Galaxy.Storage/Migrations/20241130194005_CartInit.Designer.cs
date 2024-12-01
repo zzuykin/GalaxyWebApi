@@ -3,6 +3,7 @@ using System;
 using Galaxy.Storage.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Galaxy.Storage.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241130194005_CartInit")]
+    partial class CartInit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,32 +36,6 @@ namespace Galaxy.Storage.Migrations
                     b.HasKey("IsnNode");
 
                     b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("Galaxy.Storage.Models.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("Galaxy.Storage.Models.Feedback", b =>
@@ -145,6 +122,9 @@ namespace Galaxy.Storage.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IsnNode"));
 
+                    b.Property<Guid?>("CartIsnNode")
+                        .HasColumnType("uuid");
+
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -166,6 +146,8 @@ namespace Galaxy.Storage.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("IsnNode");
+
+                    b.HasIndex("CartIsnNode");
 
                     b.HasIndex("ProductName");
 
@@ -235,25 +217,6 @@ namespace Galaxy.Storage.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Galaxy.Storage.Models.CartItem", b =>
-                {
-                    b.HasOne("Galaxy.Storage.Models.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Galaxy.Storage.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Galaxy.Storage.Models.Order", b =>
                 {
                     b.HasOne("Galaxy.Storage.Models.User", "User")
@@ -265,9 +228,16 @@ namespace Galaxy.Storage.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Galaxy.Storage.Models.Product", b =>
+                {
+                    b.HasOne("Galaxy.Storage.Models.Cart", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CartIsnNode");
+                });
+
             modelBuilder.Entity("Galaxy.Storage.Models.Cart", b =>
                 {
-                    b.Navigation("CartItems");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Galaxy.Storage.Models.User", b =>

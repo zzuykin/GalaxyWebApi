@@ -12,6 +12,6 @@ namespace Galaxy.Storage.Models
         [Required]
         public Guid UserId { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public ICollection<CartItem> CartItems { get; set; } // Связь с CartItem
     }
 }
