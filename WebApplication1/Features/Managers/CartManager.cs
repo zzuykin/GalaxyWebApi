@@ -46,8 +46,9 @@ namespace WebApplication1.Features.Managers
                 {
                     CartId = cart.IsnNode,
                     ProductId = productId,
+                    Product = product,
                     Quantity = 1
-                });
+                }); ;
             }
 
             await _context.SaveChangesAsync();
@@ -69,6 +70,13 @@ namespace WebApplication1.Features.Managers
                 return await _cartRepository.Create(_context, cartDb);
             }
             return cart;
+        }
+
+        public async Task<ICollection<CartItem>> GetCartItemsAsync(Guid userId)
+        {
+            var cart = await _context.Carts.Include(c => c.CartItems).ThenInclude(ci => ci.Product)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+            return cart.CartItems.ToList();
         }
 
         public double SumOFCart(List<CartItem> cartItems)
