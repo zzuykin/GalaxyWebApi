@@ -1,6 +1,8 @@
-﻿@using WebApplication1.Features.ViewModels
+﻿@using Galaxy.Storage.Models
+@using WebApplication1.Features.ViewModels
 @{
     var editUser = ViewData["EditUser"] as EditUser;
+    var productList = ViewData["ProductList"] as List<Product>;
 }
 @{
 
@@ -41,9 +43,31 @@
                                     Подробнее
                                 </a>
                             </div>
-
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slides">
+                    @for(int i = 0; i < productList.Count(); i++)
+                    {
+                        <div class="slide">
+                            <img src="@Url.Content(productList[i].ProductImgUrl)" alt="consalting">
+                            <a href="@Url.Action(productList[i].ProductUrl, "Products")"><p class="caption">@productList[i].ProductName</p></a>
+                        </div>
+                    }
+                </div>
+                <div class="controls">
+                    <button onclick="prevSlide()">&#10094;</button>
+                    <button onclick="nextSlide()">&#10095;</button>
+                </div>
+                <div class="indicators">
+                    @for (int i = 0; i < productList.Count(); i++)
+                    {
+                        <button onclick="showSlide(@i)"></button>
+                    }
                 </div>
             </div>
         </div>
@@ -57,21 +81,12 @@
                     </div>
                     @using (Html.BeginForm("SubmitReview", "Home", FormMethod.Post))
                     {
-                        <form @* asp-action="SubmitReview" asp-controller="Home" method="post" *@>
-                            @* <div class="form-group">
-                                <label for="name">Имя</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input placeholder="mymail@exmple.com" type="email" id="email" name="email" required>
-                            </div> *@
+                        <form>
                             <div class="form-group">
                                 <label for="review">Отзыв</label>
                                 <textarea placeholder="Мне очень нравится ваш продукт :)" id="review" name="review" rows="5" required></textarea>
                             </div>
                             <div class="form-group">
-                                @* <input type="hidden" name="publish" value="false" /> *@
                                 <input type="checkbox" id="publish" name="publish" value="true">
                                 <label for="publish">Хочу, чтобы отзыв был опубликован</label>
                             </div>
@@ -91,3 +106,4 @@
         }
     </div>
 </div>
+<script src="~/js/slider.js"></script>

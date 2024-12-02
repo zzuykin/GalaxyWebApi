@@ -18,13 +18,15 @@ namespace WebApplication1.Controllers
         private readonly IUserManager _userManager;
         private readonly IDataProtector _protector;
         private readonly ICartManager _cartManager;
+        private readonly IProductManager _productManager;
 
-        public HomeController(IFeedbackManager feedbackManager, IUserManager userManager, IDataProtectionProvider dataProtectionProvider, ICartManager cartManager)
+        public HomeController(IFeedbackManager feedbackManager, IUserManager userManager, IDataProtectionProvider dataProtectionProvider, ICartManager cartManager, IProductManager productManager)
         {
             _feedbackManager = feedbackManager;
             _userManager = userManager;
             _protector = dataProtectionProvider.CreateProtector("UserCookieProtection");
             _cartManager = cartManager;
+            _productManager = productManager;
         }
 
         [ServiceFilter(typeof(LoadUserFromCookieAttribute))]
@@ -32,7 +34,9 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             var editUser = HttpContext.Items["EditUser"] as EditUser;
+            var products = _productManager.GetListProduct();
             ViewData["EditUser"] = editUser;
+            ViewData["ProductList"] = products;
             return View();
         }
 

@@ -536,7 +536,7 @@ body {
 
 .guest__form {
   position: relative;
-  top: -50px;
+/*  top: -50px;*/
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -825,6 +825,10 @@ body {
 .about-us__contact {
   margin-right: 20px;
 }
+    .about-us__contact a {
+        color: white;
+        text-decoration: underline;
+    }
 .about-us__pages-industr {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1192,3 +1196,92 @@ html {
         text-decoration: none;
         cursor: pointer;
     }
+
+.slider {
+    position: relative;
+    width: 40%;
+    max-width: 800px;
+    overflow: hidden;
+/*    border: 1px solid #ddd;*/
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    display: flex;
+    flex-direction:column;
+    justify-content: center; /* Центрирует по горизонтали */
+    align-items: center; /* Центрирует по вертикали */
+    flex: 0 0 100%;
+    text-align: center;
+    height: 400px; /* Задайте фиксированную высоту слайда */
+    position: relative; /* Для адаптации к тексту ниже */
+    overflow: hidden; /* Скрывает все, что выходит за границы контейнера */
+}
+
+    .slide img {
+        max-width: 100%; /* Ограничивает ширину изображения */
+        max-height: 100%; /* Ограничивает высоту изображения */
+        object-fit: contain; /* Сохраняет пропорции изображения */
+        border-bottom: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+.caption {
+    font-size: 1.2em;
+    padding: 10px;
+    color: white;
+}
+
+.controls button {
+    position: absolute;
+    top: 75%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+    .controls button:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .controls button:first-child {
+        left: 10px;
+    }
+
+    .controls button:last-child {
+        right: 10px;
+    }
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding:0 10px;
+}
+
+    .indicators button {
+        width: 10px;
+        height: 10px;
+        background-color: #ddd;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+        .indicators button.active {
+            background-color: #333;
+        }
+
+.slider-container{
+    display:flex;
+    justify-content:center;
+}
